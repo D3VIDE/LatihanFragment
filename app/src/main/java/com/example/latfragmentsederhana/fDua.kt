@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +22,36 @@ class fDua : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var namaDiterima = ""
+        var alamatDiterima = ""
+        arguments?.let{
+            namaDiterima=it.getString("Nama: ") ?: ""
+            alamatDiterima=it.getString("Alamat: ") ?: ""
+        }
+        var _tvHasil = view.findViewById<TextView>(R.id.tvHasil)
+
+        if (namaDiterima != ""){
+            _tvHasil.text = "Halo, $namaDiterima! Alamat anda $alamatDiterima "
+        }
+
+        val btnOpenFDua = view.findViewById<Button>(R.id.btnOpenFDua)
+        btnOpenFDua.setOnClickListener {
+            val fragmentManager = parentFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            val fragmentSatu= fSatu()
+
+
+            fragmentTransaction.replace(
+                R.id.fragment_container,
+                fragmentSatu
+            )
+            fragmentTransaction.commit()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

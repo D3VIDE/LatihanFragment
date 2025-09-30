@@ -31,8 +31,20 @@ class MainActivity : AppCompatActivity() {
         var _btnSatu = findViewById<Button>(R.id.btnFragmentSatu)
         var _btnDua = findViewById<Button>(R.id.btnFragmentDua)
 
-        if (savedInstanceState == null){
-            replaceFragment(fSatu())
+
+
+
+        _btnSatu.setOnClickListener {
+            if (savedInstanceState == null){
+                replaceFragment(fSatu())
+            }
+        }
+
+        _btnDua.setOnClickListener {
+
+            if (savedInstanceState == null){
+                replaceFragment(fDua())
+            }
         }
     }
 }
